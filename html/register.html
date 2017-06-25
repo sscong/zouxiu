@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/register.css"/>
+		<link rel="stylesheet" type="text/css" href="../icons/iconfont.css"/>
+		<script src="../js/zepto-1.1.6.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<title>用户注册</title>
+	</head>
+	<body>
+		<header>
+			<i class="iconfont">&#xe619;</i>
+			<span>用户注册</span>
+		</header>
+		<section>
+			<form>
+				<div class="user">
+					<label>账户名称：</label>
+					<input type="text" placeholder="请输入账户" class="username" />
+				</div>
+				<div class="passw-wrap">
+					<label>登录密码：</label>
+					<input type="text" placeholder="请输入密码" class="passw" />
+				</div>
+				<div class="passw-wrap">
+					<label>确认登录：</label>
+					<input type="text" placeholder="请输入密码" class="qpassw" />
+				</div>
+				<p></p>
+				<a href="javascript:void(0);" class="login">确认注册</a>
+			</form>
+		</section>
+		<script type="text/javascript">
+			$(function(){
+				
+				/*$('form .username').blur(function(){
+					$.post('http://datainfo.duapp.com/shopdata/userinfo.php',{'status':'register','userID':username,'password':passw},function(data){
+						console.log(data);
+						if(data==0){
+							$('form p').html('该用户名已被注册，请更改');
+						}else{
+							$('form .qpassw').blur(function(){
+								if(passw == qpassw){
+									$.post('')
+								}else{
+									$('form p').html('两次密码输入不一致，请更改');
+								}
+							});
+							
+						}
+					})
+				});*/
+				
+				$('form .login').on('tap',function(){
+					var username = $('.username')[0].value;
+					var passw1 = $('.passw')[0].value;
+					var qpassw1 = $('.qpassw')[0].value;
+					if(passw1 == qpassw1){
+						$.post('http://datainfo.duapp.com/shopdata/userinfo.php',{'status':'register','userID':username,'password':passw1},function(data){
+							if(data==0){
+								$('form p').html('该用户名已被注册，请更改');
+								console.log('aa');
+							}else{
+								localStorage.setItem('username',username);
+								localStorage.setItem('password',passw1);
+								location.href = 'login.html';
+							}
+						});
+					}else{
+						$('form p').html('两次密码输入不一致，请更改');
+						console.log('cc');
+					}
+				});
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>

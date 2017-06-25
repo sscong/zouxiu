@@ -1,0 +1,102 @@
+/*购物车图标在右侧*/
+body{
+	overflow: hidden;
+}
+header i{
+	float: right;
+	width: 1.04rem;
+	height: 0.55rem;
+	background: linear-gradient(#d0100f,#940807,top);
+	border-radius: 0.12rem;
+	border: 1px solid #9f1512;
+	box-shadow: 1px 1px 1px 1px #7a0607;
+	font-size: 0.4rem;
+	line-height: 0.55rem;
+	text-align: center;
+	margin-top: 0.1rem;
+	font-size: 0.23rem;
+	font-style: normal;
+}
+.topjs{
+	height: 0.88rem;
+	line-height: 0.88rem;
+	font-size: 0.28rem;
+	color: #fff;
+	background: #747474;
+	position: fixed;
+	top: 0.88rem;
+	width: 100%;
+	z-index: 2;
+}
+.topjs p{
+	float: left;
+	margin: 0;
+	margin-left: 0.24rem;
+}
+.topjs p span{
+	color: #ab191a;
+}
+
+section{padding-top:0.88rem;font-size: 0.28rem;overflow: hidden;}
+ul{
+	padding: 0;
+	margin: 0;
+}
+li{padding:0.33rem 0.27rem;display:flex;border-bottom:1px solid #cbcbcb;}
+li img{width:1.72rem;height:1.72rem;border:1px solid #c8c8c8;}
+li .main-con{padding-left:0.25rem;position:relative;flex: 1;}
+li .main-con .main-con1{display:flex;justify-content:space-between;}
+li .main-con .main-con1 p{
+	margin: 0;
+	flex: 1;
+	
+}
+
+li .main-con .main-con2{}
+li .main-con .main-con2 span{color: #ab191a;}
+li form input[type="button"]{width:0.56rem;height:0.42rem;background:-webkit-linear-gradient(top,#b0b0b0,#4d4d4d);color:#fff;text-align:center;border-radius:5px;border:0;}
+li form input:nth-of-type(2){width:0.74rem;height:0.4rem;padding: 0;border: 1px solid #cecece;border-radius: 0.03rem;margin: 0 0.08rem; text-align: center;}
+li form{position:absolute;bottom:0.34rem;}
+li form *{
+	float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

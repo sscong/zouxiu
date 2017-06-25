@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="icons/iconfont.css"/>
+		<script type="text/javascript">
+			window.PointerEvent = void 0
+		</script>
+		<script src="js/zepto-1.1.6.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<span>新品上市</span>
+			<i class="iconfont">&#xe61b;</i>
+		</header>
+		<nav id="wrapper">
+			<div>
+				<!--<i class="iconfont">&#xe61b;<b></b></i>-->
+			</div>
+		</nav>
+		<section>
+			<ul>
+				<!--<li>
+					<div class="img-wrap">
+						<img src="imgs/1.jpg"/>
+					</div>
+					<p class="title">夏季清凉T恤蓝图</p>
+					<div class="price">
+						<span>￥54.00</span>
+						<span>￥999</span>
+					</div>
+				</li>-->
+				
+			</ul>
+		</section>
+		<footer>
+			<a class="active" href="index.html">
+				<i class="iconfont">&#xe644;</i><br/>
+				<span>首页</span>
+			</a>
+			<a href="index.html">
+				<i class="iconfont">&#xe651;</i><br/>
+				<span>分类</span>
+			</a>
+			<a href="html/cart.html">
+				<i class="iconfont">&#xe61b;</i><br/>
+				<span>购物车</span>
+			</a>
+			<a href="html/usermanger.html">
+				<i class="iconfont">&#xe646;</i><br/>
+				<span>我的秀</span>
+			</a>
+			<a href="html/cjiang.html">
+				<i class="iconfont">&#xe61e;</i><br/>
+				<span>更多</span>
+			</a>
+			
+		</footer>
+		<script type="text/javascript">
+			$(function(){
+				//默认展示分类1的商品
+				$.ajax({
+					type:"get",
+					url:" http://datainfo.duapp.com/shopdata/getGoods.php",
+					data:{'classID':1},
+					dataType:'jsonp',
+					async:true,
+					success:function(data){
+						console.log(data);
+						var html = '';
+						for(var i=0;i<data.length;i++){
+							html+= `<li><a href='html/produce.html?goodsid=${data[i].goodsID}'>
+										<div class="img-wrap">
+											<img src=${data[i].goodsListImg}>
+										</div>
+										<p class="title">${data[i].goodsName}</p>
+										<div class="price">
+											<span>￥${data[i].price}</span>
+											<span>￥999</span>
+										</div>
+									</a></li>`;
+							
+						}
+						$('section ul').html(html);
+						var myScroll = new IScroll('section',{
+							click:true
+						});
+						
+					}
+				}); 
+				$.get('http://datainfo.duapp.com/shopdata/getclass.php',function(data){
+					//生成分类图标
+					var data = JSON.parse(data);
+					var html = '';
+					for(var i = 0;i<data.length;i++){
+						html+=`<i class="iconfont" classid=${data[i].classID}>${data[i].icon}<b></b></i>`;
+					}
+					$('nav div').html(html);
+					
+					//第一个默认样式
+					$('nav div i').eq(0).addClass('active');
+					
+					//导航滚动
+					setTimeout(function(){
+						$('nav div').css('width',($('nav div i')[0].offsetWidth*$('nav div i').length+30));
+						var myScroll = new IScroll('nav',{
+							scrollX:true
+						});
+					},100);
+					
+					//点击获取商品信息
+					$('nav div i').on('tap',function(){
+						$(this).addClass('active').siblings().removeClass('active');
+						//获取对应的商品信息
+						var id = $(this).attr('classid');
+						$.ajax({
+							type:"get",
+							url:" http://datainfo.duapp.com/shopdata/getGoods.php",
+							data:{'classID':id},
+							dataType:'jsonp',
+							async:true,
+							success:function(data){
+								console.log(data);
+								var html = '';
+								for(var i =0;i<data.length;i++){
+									html+= `<li>
+												<a href='html/produce.html?goodsid=${data[i].goodsID}'}><div class="img-wrap">
+													<img src=${data[i].goodsListImg}>
+												</div>
+												<p class="title">${data[i].goodsName}</p>
+												<div class="price">
+													<span>￥${data[i].price}</span>
+													<span>￥999</span>
+												</a></div>
+											</li>`;
+											
+								}
+								$('section ul').html(html);
+								var myScroll = new IScroll('section');
+								
+							}
+						});
+					});
+					
+				});
+			});
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

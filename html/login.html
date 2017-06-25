@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="../icons/iconfont.css"/>
+		<script src="../js/zepto-1.1.6.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<title>用户登录</title>
+	</head>
+	<body>
+		<header>
+			<span>用户登录</span>
+		</header>
+		<section>
+			<form>
+				<div class="user">
+					<input type="text" placeholder="请输入账户" class="username"/>
+				</div>
+				<div class="passw">
+					<input type="password" placeholder="请输入密码" class="password"/>
+				</div>
+				
+				<div class="mCheck">
+					<input type="checkbox" class="xsmm"/>
+					<label>显示密码</label>
+					<a href="#">忘记密码？</a>
+				</div>
+				<div class="mzCheck">
+					<input type="checkbox" checked="checked" class="jzmm"/>
+					<label>记住密码自动登录</label>
+				</div>
+				<p></p>
+				<a href="javascript:void(0);" class="login">登录</a>
+				<a href="register.html">注册</a>
+			</form>
+		</section>
+		<script type="text/javascript">
+			$(function(){
+				//是否存在session，存在直接填入
+				$('form .username').val(localStorage.getItem('username'));
+				$('form .password').val(localStorage.getItem('password'));
+				//显示密码
+				$('.xsmm').click(function(){
+					$('.password').attr('type','text');
+				});
+				$('.login').on('tap',function(){
+					var username = $('.username').val();
+					var password = $('.password').val();
+					$.post('http://datainfo.duapp.com/shopdata/userinfo.php',{'status':'login','userID':username,'password':password},function(data){
+						if(data == 0){
+							$('form p').html('用户名不存在');
+						}else if(data == 2){
+							$('form p').html('用户名与密码不符');
+						}else{
+							if($('.jzmm').attr('checked')){
+								localStorage.setItem('username',username);
+								localStorage.setItem('password',password);
+								location.href = '../index.html';
+							}
+						}
+					});
+					
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/cart.css"/>
+		<link rel="stylesheet" type="text/css" href="../icons/iconfont.css"/>
+		<script type="text/javascript">
+			window.PointerEvent = void 0
+		</script>
+		<script src="../js/zepto-1.1.6.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<span>购物车</span>
+			<i>结算</i>
+		</header>
+		<div class="topjs">
+			<p class="num">商品数量：<span></span></p>
+			<p class="price">应付总额（不含运费）：￥<span></span></p>
+		</div>
+		<section>
+			<ul>
+				<!--<li>
+					<img src="../imgs/3.jpg"/>
+					<div class="main-con">
+	                	<div class="main-con1">
+	                        <p>ESPRIT 气质V领玫红T恤</p>
+	                        <i class="iconfont">&#xe68d;</i>
+	                    </div>
+	                    <div class="main-con2">
+                       		 单价：<span>￥199</span>
+	                    </div>
+	                    <form>
+	                    	<span>数量：</span>
+	                        <input type="button" value="-"/>
+	                        <input type="text" value="1"/>
+	                        <input type="button" value="+"/>
+	                    </form>
+	                </div>
+				</li>-->
+			</ul>
+		</section>
+		<footer>
+			<a href="../index.html">
+				<i class="iconfont">&#xe644;</i><br/>
+				<span>首页</span>
+			</a>
+			<a href="../index.html">
+				<i class="iconfont">&#xe651;</i><br/>
+				<span>分类</span>
+			</a>
+			<a href="cart.html" class="active">
+				<i class="iconfont">&#xe61b;</i><br/>
+				<span>购物车</span>
+			</a>
+			<a href="usermanger.html">
+				<i class="iconfont">&#xe646;</i><br/>
+				<span>我的秀</span>
+			</a>
+			<a href="cjiang.html">
+				<i class="iconfont">&#xe61e;</i><br/>
+				<span>更多</span>
+			</a>
+			
+		</footer>
+		<script type="text/javascript">
+			
+		</script>
+		<script type="text/javascript">
+			$(function(){
+				var username = localStorage.getItem('username');
+				$.post('http://datainfo.duapp.com/shopdata/getCar.php?callback=',{'userID':username},function(data){
+					data=eval(data);
+					var html = '';
+					for(var i =0;i<data.length;i++){
+						html+=`
+							<li>
+								<img src=${data[i].goodsListImg}>
+								<div class="main-con">
+				                	<div class="main-con1">
+				                        <p>${data[i].goodsName}</p>
+				                        <i class="iconfont dele">&#xe68d;</i>
+				                    </div>
+				                    <div class="main-con2">
+			                       		 单价：￥<span>${data[i].price}</span>
+				                    </div>
+				                    <form classid=${data[i].goodsID}>
+				                    	<span>数量：</span>
+				                        <input type="button" value="-" class='jian'/>
+				                        <input type="text" value=${data[i].number} class='count'/>
+				                        <input type="button" value="+" class='jia'/>
+				                    </form>
+				                </div>
+							</li>
+						`
+						
+						
+					}
+					$('section ul').html(html);
+					var myScroll = new IScroll('section',{
+						click:true
+					});
+					
+					var add = function(){
+						var numcount = 0;
+						var price = 0;
+						for(var i=0;i<$('form .count').length;i++){
+							numcount+=Number($('form .count').eq(i).val());
+							console.log(numcount);
+							$('.topjs .num span').html(numcount);
+							price += Number($('form .count').eq(i).val())*Number($('.main-con2 span').eq(i).html())
+							$('.topjs .price span').html(price);
+						}
+					}
+					add();
+					
+					for(var i=0;i<$('form .jian').length;i++){
+					 	var num;
+						$('form .jian').eq(i).on('tap',function(){
+							num =$(this).siblings('.count').val();
+							if(num<=1){
+								num = 1;
+							}else{
+								
+								num--;
+								$(this).siblings('.count').val(num);
+								var id = $(this).parent().attr('classid');
+								$.post('http://datainfo.duapp.com/shopdata/updatecar.php',{'userID':username,'goodsID':id,'number':num},function(data){
+									console.log(data);
+								});
+							}
+							add();
+						});
+					}
+					var numcount = 0;
+					for(var i=0;i<$('form .jia').length;i++){
+					 	var num;
+						$('form .jia').eq(i).on('tap',function(){
+								num =$(this).siblings('.count').val();
+								num++;
+								$(this).siblings('.count').val(num);
+								var id = $(this).parent().attr('classid');
+								$.post('http://datainfo.duapp.com/shopdata/updatecar.php',{'userID':username,'goodsID':id,'number':num},function(data){
+									console.log(data);
+								});
+								add();
+								
+						});
+					}
+					for(var i=0;i<$('form .count').length;i++){
+					 	var num;
+						$('form .count').eq(i).on('blur',function(){
+							
+								num =$(this).val();
+								var id = $(this).parent().attr('classid');
+								$.post('http://datainfo.duapp.com/shopdata/updatecar.php',{'userID':username,'goodsID':id,'number':num},function(data){
+									console.log(data);
+								});
+								add();
+						});
+					}
+					for(var i=0;i<$('section .dele').length;i++){
+						$('section .dele').eq(i).on('tap',function(){
+							$(this).parents('li').remove();	
+							var id = $(this).parent().attr('classid');
+							$.get('http://datainfo.duapp.com/shopdata/updatecar.php',{'userID':username,'goodsID':id,'number':0},function(data){
+								console.log(data);
+							})
+							
+						});
+					}
+					
+					
+					
+				})
+			});
+			
+		</script>
+	</body>
+</html>

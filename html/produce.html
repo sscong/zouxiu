@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/produce.css"/>
+		<link rel="stylesheet" type="text/css" href="../icons/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css"/>
+		<script src="../js/zepto-1.1.6.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/swiper-3.3.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<i class="iconfont left">&#xe619;</i>
+			<span>商品资料</span>
+			<i class="iconfont right">&#xe61b;</i>
+		</header>
+		
+		<section>
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			        <!--<div class="swiper-slide"><img src="../imgs/4.jpg"/></div>-->
+			    </div>
+			    <!-- 如果需要分页器 -->
+			    <div class="swiper-pagination"></div>
+			</div>
+			<div class="content">
+				<!--<p>美特斯邦威</p>
+				<div class="price">
+					<span>￥85.00</span>
+					<span>159.00</span>
+				</div>
+				<span>购买人数：209</span>-->
+			</div>
+			<div class="spxq">
+				<span>查看商品详情</span>
+				<i class="iconfont">&#xe619;</i>
+			</div>
+			<div class="jcart">
+				<input type="button" value="添加到购物车" />
+			</div>
+		</section>
+	<script type="text/javascript">
+		$('i.left').click(function(){
+			location.href = '../index.html';
+		});
+		$('i.right').click(function(){
+			location.href = 'cart.html';
+		});
+		var id = location.href.split('=')[1];
+		$('.jcart input').click(function(){
+			var username = localStorage.getItem('username');
+			
+			if(username){
+				
+					$.post('http://datainfo.duapp.com/shopdata/updatecar.php?callback=',{'userID':username,'goodsID':id,'number':1},function(data){
+						console.log(data);
+					});
+				
+			}else{
+				location.href = 'login.html';
+			}
+			
+			
+			
+			
+		});
+		
+		$.ajax({
+					type:"get",
+					url:" http://datainfo.duapp.com/shopdata/getGoods.php",
+					data:{'goodsID':id},
+					dataType:'jsonp',
+					async:true,
+					success:function(data){
+						var img =JSON.parse(data[0].imgsUrl) ;
+						var html = '';
+						console.log(img);
+						for(var i =0;i<img.length;i++){
+							html+=`<div class="swiper-slide"><img src=${img[i]}></div>`
+						}
+						$('.swiper-wrapper').html(html);
+						var mySwiper = new Swiper ('.swiper-container', {
+						    // 如果需要分页器
+						    pagination: '.swiper-pagination',
+						})
+						//商品信息
+						var html1 = `
+							<p>${data[0].goodsName}</p>
+							<div class="price">
+								<span>${data[0].price}</span>
+								<span>${Math.round(data[0].price*data[0].discount*0.1)}</span>
+							</div>
+							<span>购买人数：${data[0].buynumber}</span>
+						`;
+						console.log();
+						$('.content').html(html1);
+					}
+			})
+	</script>	
+	</body>
+</html>

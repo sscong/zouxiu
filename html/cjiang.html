@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/cjiang.css"/>
+		<link rel="stylesheet" type="text/css" href="../icons/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css"/>
+		<script src="../js/zepto-1.1.6.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/swiper-3.3.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			
+			
+			<i class="iconfont">&#xe619;</i>
+			<span>转盘抽奖</span>
+			<i class="right">退出登录</i>
+		</header>
+		
+		<section>
+			<div class="cj">
+				<span>一等奖</span>
+				<span>二等奖</span>
+				<span>三等奖</span>
+				<span>四等奖</span>
+				<a style="font-size: 0.6rem;background: #640000;">抽奖</a>
+				<span>五等奖</span>
+				<span>六等奖</span>
+				<span>谢谢参与</span>
+				<span>特等奖</span>
+			</div>
+			<div class="hjyh"></div>
+		</section>
+	<script type="text/javascript">
+		 	$('header .iconfont').on('tap',function(e){
+		 		location.href = '../index.html';
+		 	});
+		 	$('.cj a').click(function(){
+		 		var i = 0;
+		 		
+		 		var timer = setInterval(function(){
+					var num =Math.floor(Math.random()*$('.cj span').length);
+					$('.cj span').eq(num).addClass('active').siblings().removeClass('active');
+					i++;
+					if(i>15){
+						clearInterval(timer);
+						var num = $('.cj span.active').html();
+						alert(num);
+					}
+					
+				},300);
+				
+				
+		 	});
+			
+	</script>	
+	</body>
+</html>

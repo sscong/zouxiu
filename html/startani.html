@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/animate.min.css"/>
+		
+		<script src="../js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/zepto-1.1.6.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/swiper-3.3.1.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/touch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/swiper.animate1.0.2.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			.swiper-container{
+				width: 100vw;
+				height: 100vh;
+			}
+			.swiper-slide{
+				width: 100vw;
+				height: 100vh;
+				background: #f8f3f7;
+				position: relative;
+			}
+			.swiper-slide>*{
+				position: absolute;
+			}
+			.slid1 .img1{
+				width: 2.6rem;
+				top: 1.55rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.slid1 .img2{
+				width: 2.58rem;
+				top: 4.75rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.slid1 .img3{
+				width: 6.4rem;
+				bottom: 0;
+			}
+			.slid2 .img1{
+				width: 6.4rem;
+				top: 0;
+			}
+			.slid2 .img2{
+				width: 3.4rem;
+				top: 5.78rem;
+				left: 1.8rem;
+			}
+			.slid2 .img3{
+				width: 3.5rem;
+				top: 6.68rem;
+				left: 0.18rem;
+			}
+			
+			.slid3 .img1{
+				width: 1.85rem;
+				top: 0.68rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+				animation: jt 1.2s ease-in infinite;
+			}
+			@keyframes jt{
+				from{transform: translateY(0.6rem);}
+				to{transform: translateY(0.2rem);}
+			}
+			.slid3 .img2{
+				width: 2.23rem;
+				top: 3.6rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.slid3 .img3{
+				width: 4.16rem;
+				top: 6.5rem;
+				left: 0.8rem;
+			}
+			.slid4 .img1{
+				width: 2.38rem;
+				top: 1.14rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.slid4 .img2{
+				width: 3.92rem;
+				top: 2.44rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			.slid4 .img3{
+				width: 2.88rem;
+				top: 5.82rem;
+				left: 1.66rem;
+			}
+			.slid5 .img1{
+				width: 0.46rem;
+				top: 1.38rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+				animation: jt 1.2s ease-in infinite;
+			}
+			.slid5 .img2{
+				width: 4.5rem;
+				top: 3.54rem;
+				left: 1.04rem;
+			}
+			.slid5 .img3{
+				width: 2.92rem;
+				top: 6.67rem;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide slid1">
+		        	<img src="../imgs/2_03.jpg" class="img1 ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+	        		<img src="../imgs/2_07.jpg" class="img2 ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.9s" swiper-animate-delay="0.5s">
+        			<img src="../imgs/2_10.jpg" class="img3 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+		        </div>
+		        <div class="swiper-slide slid2">
+        			<img src="../imgs/4_02.jpg" class="img1 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+		        	<img src="../imgs/4_05.jpg" class="img2 ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+		        	<img src="../imgs/4_09.jpg" class="img3 ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.8s">
+		        	
+		        </div>
+		        <div class="swiper-slide slid3">
+		        	<img src="../imgs/4_03.jpg" class="img1">
+	        		<img src="../imgs/4_07.jpg" class="img2 ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.9s" swiper-animate-delay="0.1s">
+        			<img src="../imgs/4_11.jpg" class="img3 ani" swiper-animate-effect="shake" swiper-animate-duration="1.5s" swiper-animate-delay="0.6s">
+		        </div>
+		        <div class="swiper-slide slid4">
+		        	<img src="../imgs/5_03.jpg" class="img1">
+	        		<img src="../imgs/5_07.jpg" class="img2 ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.9s" swiper-animate-delay="0.1s">
+        			<img src="../imgs/5_11.jpg" class="img3 ani" swiper-animate-effect="shake" swiper-animate-duration="1.5s" swiper-animate-delay="0.6s">
+		        </div>
+		        <div class="swiper-slide slid5">
+		        	<img src="../imgs/6_03.jpg" class="img1">
+	        		<img src="../imgs/6_07.jpg" class="img2 ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.9s" swiper-animate-delay="0.1s">
+        			<img src="../imgs/6_11.jpg" class="img3 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1.5s" swiper-animate-delay="0.6s">
+		        </div>
+		    </div>
+		    <!-- 如果需要分页器 -->
+		    <div class="swiper-pagination"></div>
+		    
+		    
+		    
+		    
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				var mySwiper = new Swiper ('.swiper-container', {
+				    direction: 'horizontal',
+				    
+				    // 如果需要分页器
+				    pagination: '.swiper-pagination',
+				    
+				   onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+				     swiperAnimateCache(swiper); //隐藏动画元素 
+				     swiperAnimate(swiper); //初始化完成开始动画
+				   }, 
+				   onSlideChangeEnd: function(swiper){ 
+				     swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+				   } 
+				})  
+				$('.slid5 .img3').on('tap',function(){
+			   	  location.href = '../index.html';
+			    });
+			});
+		</script>
+	</body>
+</html>

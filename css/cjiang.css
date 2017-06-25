@@ -1,0 +1,70 @@
+section{
+	padding: 0.14rem;
+	display: flex;
+	flex-direction: column;
+}
+
+/*商品列表页购物车图标在右侧*/
+header .right{
+	float: right;
+	width: 1.5rem;
+	height: 0.55rem;
+	background: linear-gradient(#d0100f,#940807,top);
+	border-radius: 0.12rem;
+	border: 1px solid #9f1512;
+	box-shadow: 1px 1px 1px 1px #7a0607;
+	font-size: 0.4rem;
+	line-height: 0.55rem;
+	text-align: center;
+	margin-top: 0.1rem;
+	font-size: 0.28rem;
+	font-style: normal;
+}
+header .iconfont{
+	z-index: 10;
+	position: absolute;
+}
+section .cj{
+	background: #a90506;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 0.4rem;
+	color: #fff;
+	
+}
+section .cj span{
+	width: 2.04rem;
+	height: 2.04rem;
+	text-align: center;
+	line-height: 2.04rem;
+	
+}
+section .cj span.active{
+	background: peachpuff;
+	color: #999;
+}
+section .cj a{
+	width: 2.04rem;
+	height: 2.04rem;
+	text-align: center;
+	line-height: 2.04rem;
+	
+}
+section .hjyh{
+	flex: 1;
+	background: #ff4948;
+	margin-top: 0.14rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

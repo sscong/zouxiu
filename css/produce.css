@@ -1,0 +1,104 @@
+section{
+	font-size: 0.3rem;
+	display: flex;
+	flex-direction: column;
+}
+header .left{
+	position: absolute;
+	z-index: 2;
+}
+/*商品列表页购物车图标在右侧*/
+header .right{
+	
+	width: 1.04rem;
+	height: 0.55rem;
+	background: linear-gradient(#d0100f,#940807,top);
+	border-radius: 0.12rem;
+	border: 1px solid #9f1512;
+	box-shadow: 1px 1px 1px 1px #7a0607;
+	font-size: 0.4rem;
+	line-height: 0.55rem;
+	text-align: center;
+	margin-top: 0.1rem;
+	position: absolute;
+	z-index: 2;
+	right: 0.26rem;
+}
+.swiper-container{
+	width: 100%;
+}
+.swiper-slide{
+	width: 100%;
+}
+.swiper-slide img{
+	width: 6.4rem;
+}
+
+section .content{
+	padding: 0.6rem 0.28rem;
+	line-height: 0.78rem;
+	flex: 1;
+}
+section .content p{
+	margin: 0;
+	
+}
+section .content .price span:first-child{
+	color: #b90a55;
+	font-weight: 900;
+}
+section .content .price span:last-child{
+	text-decoration: line-through;
+	margin-left: 0.15rem;
+}
+section .spxq{
+	padding: 0 0.28rem;
+	height: 1rem;
+	background: #fff;
+	line-height: 1rem;
+}
+section .spxq i{
+	float: right;
+}
+section .jcart{
+	background: #a3a3a3;
+	text-align: center;
+}
+section .jcart input{
+	width: 4.36rem;
+	height: 0.75rem;
+	background: #c22826;
+	color: #fff;
+	border: 0;
+	border-radius: 0.1rem;
+	margin: 0.1rem 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
